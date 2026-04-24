@@ -1,16 +1,19 @@
 import { defineConfig } from 'vite'
+import { fileURLToPath } from 'url'
+import { dirname, resolve } from 'path'
 
-// Clean Vite config (no Base44, no errors)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 export default defineConfig({
-  root: '.',
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
 
   build: {
     outDir: 'dist',
-    emptyOutDir: true
+    emptyOutDir: true,
   },
-
-  server: {
-    port: 5173,
-    open: true
-  }
 })
